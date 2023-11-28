@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Favorite Heroes and Preferences</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+      #heroesList {
+        margin-top: 20px;
+      }
+
+      #preferences {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="heroesList">
+      <h2>Любимые киногерои:</h2>
+      <ul id="heroes"></ul>
+    </div>
+
+    <div id="preferences">
+      <h2>Что вы больше любите: кино, книги, автомобили?</h2>
+      <input type="radio" name="preference" value="movies" /> Кино
+      <input type="radio" name="preference" value="books" /> Книги
+      <input type="radio" name="preference" value="cars" /> Автомобили
+      <button onclick="displayFavorites()">Показать любимое</button>
+      <ul id="favorites"></ul>
+    </div>
+
+    <script>
+      var favoriteHeroes = ["Бэтмен", "Владимир Путин", "Человек паук"];
+
+      var heroesList = document.getElementById("heroes");
+      for (var i = 0; i < favoriteHeroes.length; i++) {
+        var li = document.createElement("li");
+        li.appendChild(document.createTextNode(favoriteHeroes[i]));
+        heroesList.appendChild(li);
+      }
+
+      function displayFavorites() {
+        var preference = $("input[name='preference']:checked").val();
+        var favoritesList = $("#favorites");
+        favoritesList.empty(); // Очищаем предыдущие результаты
+
+        switch (preference) {
+          case "movies":
+            favoritesList.append("<li>Побег из шоушенка</li>");
+            favoritesList.append("<li>Зеленая миля</li>");
+            favoritesList.append("<li>Волк с Уолл стрит</li>");
+            break;
+          case "books":
+            favoritesList.append("<li>Гарри потер</li>");
+            favoritesList.append("<li>Математика 8 класс</li>");
+            favoritesList.append("<li>5 ночей с фредди</li>");
+            break;
+          case "cars":
+            favoritesList.append("<li>Nissan Gtr</li>");
+            favoritesList.append("<li>Dodge chalendger</li>");
+            favoritesList.append("<li>Chevrolet Corvet</li>");
+            break;
+          default:
+            favoritesList.append("<li>Выберите предпочтение</li>");
+        }
+      }
+    </script>
+  </body>
+</html>
